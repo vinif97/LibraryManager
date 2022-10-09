@@ -29,6 +29,9 @@ namespace LibraryManager.Infrastructure.Context
         {
             base.OnModelCreating(builder);
             builder.ApplyConfiguration(new BookConfiguration());
+            builder.ApplyConfiguration(new AddressConfiguration());
+            builder.ApplyConfiguration(new AuthorConfiguration());
+            builder.ApplyConfiguration(new BookItemConfiguration());
         }
     }
 }

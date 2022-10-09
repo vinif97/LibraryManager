@@ -1,11 +1,6 @@
 ﻿using LibraryManager.Domain.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LibraryManager.Infrastructure.Context.Configuration
 {
@@ -14,20 +9,25 @@ namespace LibraryManager.Infrastructure.Context.Configuration
         public void Configure(EntityTypeBuilder<Book> builder)
         {
             builder.HasKey(book => book.BookId);
-            builder.Property(book => book.BookId)
-                   .ValueGeneratedOnAdd();
             builder.Property(book => book.Title)
-                   .IsRequired();
+                   .IsRequired()
+                   .HasColumnType("varchar")
+                   .HasMaxLength(128);
             builder.HasIndex(book => book.Title)
                    .IsUnique();
             builder.Property(book => book.PublishedYear)
-                   .IsRequired();
+                   .IsRequired()
+                   .HasColumnType("char")
+                   .HasMaxLength(4);
             builder.Property(book => book.Publisher)
-                   .IsRequired();
+                   .IsRequired()
+                   .HasColumnType("varchar")
+                   .HasMaxLength(64);
             builder.Property(book => book.Authors)
                    .IsRequired();
             builder.Property(book => book.Category)
-                   .IsRequired();
+                   .IsRequired()
+                   .HasColumnType("tinyint");
         }
     }
 }
