@@ -9,7 +9,6 @@ namespace LibraryManager.Domain.Models
         public Publisher Publisher { get; set; }
         public short PublishedYear { get; set; }
         public Category Category { get; set; }
-        public Languague Languague { get; set; }
-        public ICollection<Author>? Authors { get; set; }
+        public ICollection<Author> Authors { get; set; }
     }
 }

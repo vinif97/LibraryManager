@@ -1,4 +1,5 @@
 ﻿using LibraryManager.Domain.Models;
+using LibraryManager.Infrastructure.Context.Configuration;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -23,5 +24,11 @@ namespace LibraryManager.Infrastructure.Context
         DbSet<Publisher> Publishers { get; set; }
         DbSet<Member> Members { get; set; }
         DbSet<Librarian> Librarians { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            base.OnModelCreating(builder);
+            builder.ApplyConfiguration(new BookConfiguration());
+        }
     }
 }
