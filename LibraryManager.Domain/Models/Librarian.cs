@@ -1,7 +1,6 @@
 ﻿namespace LibraryManager.Domain.Models
 {
-    public class Librarian
+    public class Librarian : User
     {
-        public int LibrarianId { get; set; }
     }
 }
