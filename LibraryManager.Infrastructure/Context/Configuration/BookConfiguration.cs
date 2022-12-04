@@ -19,15 +19,12 @@ namespace LibraryManager.Infrastructure.Context.Configuration
                    .IsRequired()
                    .HasColumnType("char")
                    .HasMaxLength(4);
-            builder.Property(book => book.Publisher)
-                   .IsRequired()
-                   .HasColumnType("varchar")
-                   .HasMaxLength(64);
-            builder.Property(book => book.Authors)
-                   .IsRequired();
             builder.Property(book => book.Category)
                    .IsRequired()
                    .HasColumnType("tinyint");
+            builder.HasOne(book => book.Publisher)
+                   .WithMany(publisher => publisher.Books)
+                   .IsRequired();
         }
     }
 }

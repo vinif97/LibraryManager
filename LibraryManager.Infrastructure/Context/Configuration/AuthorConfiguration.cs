@@ -9,11 +9,11 @@ namespace LibraryManager.Infrastructure.Context.Configuration
         public void Configure(EntityTypeBuilder<Author> builder)
         {
             builder.HasKey(author => author.AuthorId);
-            builder.Property(author => author.Name)
+            builder.Property(author => author.AuthorName)
                    .IsRequired()
                    .HasMaxLength(256);
             builder.HasMany(author => author.Books)
-                   .WithOne();
+                   .WithMany(book => book.Authors);
         }
     }
 }

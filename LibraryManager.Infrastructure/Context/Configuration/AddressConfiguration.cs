@@ -12,21 +12,23 @@ namespace LibraryManager.Infrastructure.Context.Configuration
             builder.HasKey(address => address.AddressId);
             builder.Property(address => address.StreetAddress)
                    .IsRequired()
+                   .HasColumnType("varchar")
                    .HasMaxLength(256);
-            builder.Property(address => address.City)
-                   .IsRequired()
-                   .HasMaxLength(32);
-            builder.Property(address => address.State)
-                   .IsRequired()
-                   .HasMaxLength(32);
+            builder.HasOne(address => address.City)
+                   .WithMany(city => city.Addresses)
+                   .IsRequired();
             builder.Property(address => address.Number)
                    .IsRequired()
                    .HasColumnType("smallint")
-                   .HasPrecision(4);
+                   .HasPrecision(5);
             builder.Property(address => address.Complement)
                    .HasMaxLength(128);
             builder.Property(address => address.Reference)
+                   .HasColumnType("varchar")
                    .HasMaxLength(256);
+            builder.Property(address => address.Zipcode)
+                   .HasColumnType("char")
+                   .HasMaxLength(9);
         }
     }
 }

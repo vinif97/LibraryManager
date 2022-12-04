@@ -13,6 +13,9 @@ namespace LibraryManager.Infrastructure.Context.Configuration
                    .IsRequired();
             builder.Property(bookItem => bookItem.IsVirtual)
                    .IsRequired();
+            builder.Property(bookItem => bookItem.Barcode)
+                   .HasColumnType("varchar")
+                   .HasMaxLength(128);
             builder.Property(bookItem => bookItem.PricePerDay)
                    .IsRequired()
                    .HasColumnType("decimal")
@@ -20,6 +23,17 @@ namespace LibraryManager.Infrastructure.Context.Configuration
             builder.Property(bookItem => bookItem.Languague)
                    .IsRequired()
                    .HasColumnType("tinyint");
+            builder.HasMany(bookItem => bookItem.BookReservation)
+                   .WithOne(bookReservation => bookReservation.BookItem);
+            builder.HasOne(bookItem => bookItem.BookLending)
+                   .WithOne(bookLending => bookLending.BookItem)
+                   .HasForeignKey<BookLending>(book => book.BookItemId);
+            builder.HasOne(bookItem => bookItem.Library)
+                   .WithMany(library => library.BookItems)
+                   .IsRequired();
+            builder.HasOne(bookItem => bookItem.Book)
+                   .WithMany(book => book.BookItems)
+                   .IsRequired();
         }
     }
 }

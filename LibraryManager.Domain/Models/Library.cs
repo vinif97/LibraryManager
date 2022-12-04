@@ -2,7 +2,9 @@
 {
     public class Library
     {
-        public string LibraryId { get; set; }
-        public string Name { get; set; }
+        public int LibraryId { get; set; }
+        public string? Name { get; set; }
+        public virtual Address? Address { get; set; }
+        public virtual ICollection<BookItem>? BookItems { get; set; }
     }
 }
