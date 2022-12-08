@@ -5,15 +5,17 @@ VisualStudioVersion = 17.1.32421.90
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LibraryManager.WebAPI", "LibraryManager.WebAPI\LibraryManager.WebAPI.csproj", "{474DE4D8-2F12-4351-834F-ECDC0DEA9D48}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibraryManager.Infrastructure", "LibraryManager.Infrastructure\LibraryManager.Infrastructure.csproj", "{71E99E78-19A0-4311-91F0-8F0111B9213C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LibraryManager.Infrastructure", "LibraryManager.Infrastructure\LibraryManager.Infrastructure.csproj", "{71E99E78-19A0-4311-91F0-8F0111B9213C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibraryManager.Application", "LibraryManager.Application\LibraryManager.Application.csproj", "{F20F11B7-E54A-4A82-B5AF-FAD2FAE52FCD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LibraryManager.Application", "LibraryManager.Application\LibraryManager.Application.csproj", "{F20F11B7-E54A-4A82-B5AF-FAD2FAE52FCD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibraryManager.Domain", "LibraryManager.Domain\LibraryManager.Domain.csproj", "{F61FC240-E8DA-4AEE-86EB-9ED6EC5254C9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LibraryManager.Domain", "LibraryManager.Domain\LibraryManager.Domain.csproj", "{F61FC240-E8DA-4AEE-86EB-9ED6EC5254C9}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{A4204706-8257-49B4-A978-8ADD28177005}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibraryManager.Tests", "LibraryManager.Tests\LibraryManager.Tests.csproj", "{0AF35739-3386-41B3-9C56-853CCB5E6AE2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LibraryManager.Domain.Tests", "LibraryManager.Tests\LibraryManager.Domain.Tests.csproj", "{0AF35739-3386-41B3-9C56-853CCB5E6AE2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibraryManager.Application.Tests", "LibraryManager.Application.Tests\LibraryManager.Application.Tests.csproj", "{F99BE959-1E93-46D2-95F7-56D86FF66848}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,12 +43,17 @@ Global
 		{0AF35739-3386-41B3-9C56-853CCB5E6AE2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0AF35739-3386-41B3-9C56-853CCB5E6AE2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0AF35739-3386-41B3-9C56-853CCB5E6AE2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F99BE959-1E93-46D2-95F7-56D86FF66848}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F99BE959-1E93-46D2-95F7-56D86FF66848}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F99BE959-1E93-46D2-95F7-56D86FF66848}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F99BE959-1E93-46D2-95F7-56D86FF66848}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{0AF35739-3386-41B3-9C56-853CCB5E6AE2} = {A4204706-8257-49B4-A978-8ADD28177005}
+		{F99BE959-1E93-46D2-95F7-56D86FF66848} = {A4204706-8257-49B4-A978-8ADD28177005}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8CB91F52-B6DB-48B8-94B4-A82EB507DD24}

@@ -12,7 +12,7 @@ namespace LibraryManager.Infrastructure.Context.Configuration
             builder.Property(book => book.Title)
                    .IsRequired()
                    .HasColumnType("varchar")
-                   .HasMaxLength(128);
+                   .HasMaxLength(256);
             builder.HasIndex(book => book.Title)
                    .IsUnique();
             builder.Property(book => book.PublishedYear)

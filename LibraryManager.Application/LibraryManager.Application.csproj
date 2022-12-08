@@ -12,4 +12,8 @@
     <ProjectReference Include="..\LibraryManager.Infrastructure\LibraryManager.Infrastructure.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Exceptions\" />
+  </ItemGroup>
+
 </Project>
