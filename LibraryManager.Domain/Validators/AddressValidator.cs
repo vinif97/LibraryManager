@@ -12,8 +12,11 @@ namespace LibraryManager.Domain.Validators
     {
         public AddressValidator()
         {
-            RuleFor(address => address.StreetAddress).NotEmpty().NotNull().WithMessage("Street Address cannot be empty");
-            RuleFor(address => address.Zipcode).Matches("\\d{5}-\\d{3}"); // Brazil Zip Code
+            RuleFor(address => address.StreetAddress).NotEmpty().WithMessage("Street Address cannot be empty");
+            RuleFor(address => (int)address.Number).GreaterThan(0).WithMessage("Number cannot be empty");
+            RuleFor(address => address.City).NotNull().WithMessage("City cannot be empty");
+            RuleFor(address => address.Zipcode).NotEmpty().WithMessage("Zip code cannot bet empty")
+                .Matches("\\d{5}-\\d{3}").WithMessage("Incorrectly formatted zip code"); // Brazil Zip Code
         }
     }
 }
