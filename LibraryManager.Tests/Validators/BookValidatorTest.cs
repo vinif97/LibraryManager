@@ -16,10 +16,11 @@ namespace LibraryManager.Domain.Tests.Validators
                 "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" +
                 "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
             };
-            BookValidator validator = new BookValidator();
+            BookValidator validator = new();
             ValidationResult validationResults = validator.Validate(book);
 
-            Assert.Equal("Title cannot be bigger than 256 characteres", validationResults.ToString());
+            string expectedError = "Title cannot be bigger than 256 characteres";
+            Assert.Equal(expectedError, validationResults.Errors[0].ToString());
         }
 
         [Fact]
@@ -29,7 +30,30 @@ namespace LibraryManager.Domain.Tests.Validators
             BookValidator validatior = new();
             ValidationResult validationResults = validatior.Validate(book);
 
-            Assert.Equal("Title cannot be empty", validationResults.ToString());
+            string expectedError = "Title cannot be empty";
+            Assert.Equal(expectedError, validationResults.Errors[0].ToString());
+        }
+
+        [Fact]
+        public void WhenPublisherIsNull_ReturnError()
+        {
+            Book book = new();
+            BookValidator validator = new();
+            ValidationResult validationResults = validator.Validate(book);
+
+            string expectedError = "Publisher cannot be null";
+            Assert.Equal(expectedError, validationResults.Errors[1].ToString());
+        }
+
+        [Fact]
+        public void WhenPublishedYearIs0_ReturnError()
+        {
+            Book book = new();
+            BookValidator validator = new();
+            ValidationResult validationResults = validator.Validate(book);
+
+            string expectedError = "Published Year cannot be empty";
+            Assert.Equal(expectedError, validationResults.Errors[2].ToString());
         }
     }
 }
