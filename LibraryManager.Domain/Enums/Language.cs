@@ -1,6 +1,6 @@
 ﻿namespace LibraryManager.Domain.Enums
 {
-    public enum Languague
+    public enum Language
     {
         Portuguese = 1,
         English = 2

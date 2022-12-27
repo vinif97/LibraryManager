@@ -20,7 +20,7 @@ namespace LibraryManager.Infrastructure.Context.Configuration
                    .IsRequired()
                    .HasColumnType("decimal")
                    .HasPrecision(10, 2);
-            builder.Property(bookItem => bookItem.Languague)
+            builder.Property(bookItem => bookItem.Language)
                    .IsRequired()
                    .HasColumnType("tinyint");
             builder.HasMany(bookItem => bookItem.BookReservation)
