@@ -7,7 +7,7 @@ namespace LibraryManager.Domain.Validators
     {
         public AuthorValidator()
         {
-            RuleFor(author => author.AuthorName).NotEmpty().WithMessage("Author name cannot bet empty");
+            RuleFor(author => author.AuthorName).NotEmpty().WithMessage("Author name cannot be empty");
         }
     }
 }

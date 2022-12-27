@@ -8,7 +8,7 @@ namespace LibraryManager.Domain.Tests.Validators
     public class AddressValidatorTest
     {
         [Fact]
-        public void WhenStreetAddressEmptyOrNull_ReturnError()
+        public void WhenStreetAddressIsEmptyOrNull_ReturnError()
         {
             Address address = new();
             AddressValidator validator = new();

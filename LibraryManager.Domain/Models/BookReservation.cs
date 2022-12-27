@@ -6,8 +6,8 @@ namespace LibraryManager.Domain.Models
     {
         public int BookReservationId { get; set; }
         public BookReservationStatus BookReservationStatus { get; set; }
-        public DateTime CreationDate { get; set; }
-        public DateTime EndDate { get; set; }
+        public DateTime? CreationDate { get; set; }
+        public DateTime? EndDate { get; set; }
         public virtual BookItem? BookItem { get; set; }
     }
 }

@@ -7,13 +7,13 @@ namespace LibraryManager.Domain.Tests.Validators
     public class AuthorValidatorTest
     {
         [Fact]
-        public void WhenAuthorNameEmptyOrNull_ReturnError()
+        public void WhenAuthorNameIsEmptyOrNull_ReturnError()
         {
             Author author = new() { AuthorName = ""};
             AuthorValidator validator = new();
             ValidationResult validationResults = validator.Validate(author);
 
-            string expectedError = "Author name cannot bet empty";
+            string expectedError = "Author name cannot be empty";
             Assert.Equal(expectedError, validationResults.Errors[0].ToString());
         }
     }
