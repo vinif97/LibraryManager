@@ -13,6 +13,8 @@ namespace LibraryManager.Infrastructure.Context.Configuration
                    .HasColumnType("varchar")
                    .HasMaxLength(128)
                    .IsRequired();
+            builder.HasIndex(publisher => publisher.PublisherName)
+                   .IsUnique();
         }
     }
 }
