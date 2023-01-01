@@ -9,7 +9,9 @@ namespace LibraryManager.Infrastructure.Context.Configuration
         public void Configure(EntityTypeBuilder<Library> builder)
         {
             builder.HasKey(library => library.LibraryId);
-            builder.Property(library => library.Address)
+            builder.HasOne(library => library.Address)
+                   .WithOne(address => address.Library)
+                   .HasForeignKey<Address>(address => address.LibraryId)
                    .IsRequired();
         }
     }

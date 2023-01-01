@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LibraryManager.Infrastructure.Migrations
 {
     [DbContext(typeof(LibraryContext))]
-    [Migration("20230101174759_Initial")]
+    [Migration("20230101191427_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -54,6 +54,9 @@ namespace LibraryManager.Infrastructure.Migrations
                         .HasMaxLength(128)
                         .HasColumnType("nvarchar(128)");
 
+                    b.Property<int>("LibraryId")
+                        .HasColumnType("int");
+
                     b.Property<short>("Number")
                         .HasPrecision(5)
                         .HasColumnType("smallint");
@@ -67,6 +70,9 @@ namespace LibraryManager.Infrastructure.Migrations
                         .HasMaxLength(256)
                         .HasColumnType("varchar(256)");
 
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Zipcode")
                         .HasMaxLength(9)
                         .HasColumnType("char(9)");
@@ -74,6 +80,12 @@ namespace LibraryManager.Infrastructure.Migrations
                     b.HasKey("AddressId");
 
                     b.HasIndex("CityId");
+
+                    b.HasIndex("LibraryId")
+                        .IsUnique();
+
+                    b.HasIndex("UserId")
+                        .IsUnique();
 
                     b.ToTable("Addresses");
                 });
@@ -184,16 +196,20 @@ namespace LibraryManager.Infrastructure.Migrations
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("CreationDate")
-                        .HasColumnType("datetime2");
+                        .IsRequired()
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("date")
+                        .HasDefaultValue(new DateTime(2023, 1, 1, 16, 14, 27, 705, DateTimeKind.Local).AddTicks(353));
 
                     b.Property<DateTime?>("DueDate")
-                        .HasColumnType("datetime2");
+                        .IsRequired()
+                        .HasColumnType("date");
 
-                    b.Property<int?>("MemberId")
+                    b.Property<int>("MemberId")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("ReturnDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("date");
 
                     b.HasKey("BookLendingId");
 
@@ -213,17 +229,23 @@ namespace LibraryManager.Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("BookReservationId"), 1L, 1);
 
-                    b.Property<int?>("BookItemId")
+                    b.Property<int>("BookItemId")
                         .HasColumnType("int");
 
-                    b.Property<int>("BookReservationStatus")
-                        .HasColumnType("int");
+                    b.Property<byte>("BookReservationStatus")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("tinyint")
+                        .HasDefaultValue((byte)1);
 
                     b.Property<DateTime?>("CreationDate")
-                        .HasColumnType("datetime2");
+                        .IsRequired()
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("date")
+                        .HasDefaultValue(new DateTime(2023, 1, 1, 16, 14, 27, 705, DateTimeKind.Local).AddTicks(4053));
 
                     b.Property<DateTime?>("EndDate")
-                        .HasColumnType("datetime2");
+                        .IsRequired()
+                        .HasColumnType("date");
 
                     b.HasKey("BookReservationId");
 
@@ -241,9 +263,11 @@ namespace LibraryManager.Infrastructure.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CityId"), 1L, 1);
 
                     b.Property<string>("CityName")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(128)
+                        .HasColumnType("varchar(128)");
 
-                    b.Property<int?>("StateId")
+                    b.Property<int>("StateId")
                         .HasColumnType("int");
 
                     b.HasKey("CityId");
@@ -262,7 +286,9 @@ namespace LibraryManager.Infrastructure.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CountryId"), 1L, 1);
 
                     b.Property<string>("CountryName")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(128)
+                        .HasColumnType("varchar(128)");
 
                     b.HasKey("CountryId");
 
@@ -296,15 +322,10 @@ namespace LibraryManager.Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("LibraryId"), 1L, 1);
 
-                    b.Property<int?>("AddressId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("LibraryId");
-
-                    b.HasIndex("AddressId");
 
                     b.ToTable("Libraries");
                 });
@@ -318,7 +339,9 @@ namespace LibraryManager.Infrastructure.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MemberId"), 1L, 1);
 
                     b.Property<int>("TotalCheckoutBooks")
-                        .HasColumnType("int");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasDefaultValue(0);
 
                     b.Property<int>("UserId")
                         .HasColumnType("int");
@@ -340,9 +363,14 @@ namespace LibraryManager.Infrastructure.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PublisherId"), 1L, 1);
 
                     b.Property<string>("PublisherName")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(128)
+                        .HasColumnType("varchar(128)");
 
                     b.HasKey("PublisherId");
+
+                    b.HasIndex("PublisherName")
+                        .IsUnique();
 
                     b.ToTable("Publishers");
                 });
@@ -355,11 +383,13 @@ namespace LibraryManager.Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("StateId"), 1L, 1);
 
-                    b.Property<int?>("CountryId")
+                    b.Property<int>("CountryId")
                         .HasColumnType("int");
 
                     b.Property<string>("StateName")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(128)
+                        .HasColumnType("varchar(128)");
 
                     b.HasKey("StateId");
 
@@ -380,10 +410,9 @@ namespace LibraryManager.Infrastructure.Migrations
                         .HasColumnType("int");
 
                     b.Property<int>("AccountStatus")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("AddressId")
-                        .HasColumnType("int");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasDefaultValue(1);
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
@@ -430,8 +459,6 @@ namespace LibraryManager.Infrastructure.Migrations
                         .HasColumnType("nvarchar(256)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("AddressId");
 
                     b.HasIndex("NormalizedEmail")
                         .HasDatabaseName("EmailIndex");
@@ -600,7 +627,23 @@ namespace LibraryManager.Infrastructure.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("LibraryManager.Domain.Models.Library", "Library")
+                        .WithOne("Address")
+                        .HasForeignKey("LibraryManager.Domain.Models.Address", "LibraryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("LibraryManager.Domain.Models.User", "User")
+                        .WithOne("Address")
+                        .HasForeignKey("LibraryManager.Domain.Models.Address", "UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("City");
+
+                    b.Navigation("Library");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("LibraryManager.Domain.Models.Book", b =>
@@ -643,7 +686,9 @@ namespace LibraryManager.Infrastructure.Migrations
 
                     b.HasOne("LibraryManager.Domain.Models.Member", "Member")
                         .WithMany("CheckedOutBooks")
-                        .HasForeignKey("MemberId");
+                        .HasForeignKey("MemberId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("BookItem");
 
@@ -654,7 +699,9 @@ namespace LibraryManager.Infrastructure.Migrations
                 {
                     b.HasOne("LibraryManager.Domain.Models.BookItem", "BookItem")
                         .WithMany("BookReservation")
-                        .HasForeignKey("BookItemId");
+                        .HasForeignKey("BookItemId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("BookItem");
                 });
@@ -663,7 +710,9 @@ namespace LibraryManager.Infrastructure.Migrations
                 {
                     b.HasOne("LibraryManager.Domain.Models.State", "State")
                         .WithMany("Cities")
-                        .HasForeignKey("StateId");
+                        .HasForeignKey("StateId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("State");
                 });
@@ -677,15 +726,6 @@ namespace LibraryManager.Infrastructure.Migrations
                         .IsRequired();
 
                     b.Navigation("User");
-                });
-
-            modelBuilder.Entity("LibraryManager.Domain.Models.Library", b =>
-                {
-                    b.HasOne("LibraryManager.Domain.Models.Address", "Address")
-                        .WithMany()
-                        .HasForeignKey("AddressId");
-
-                    b.Navigation("Address");
                 });
 
             modelBuilder.Entity("LibraryManager.Domain.Models.Member", b =>
@@ -703,18 +743,11 @@ namespace LibraryManager.Infrastructure.Migrations
                 {
                     b.HasOne("LibraryManager.Domain.Models.Country", "Country")
                         .WithMany("States")
-                        .HasForeignKey("CountryId");
+                        .HasForeignKey("CountryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Country");
-                });
-
-            modelBuilder.Entity("LibraryManager.Domain.Models.User", b =>
-                {
-                    b.HasOne("LibraryManager.Domain.Models.Address", "Address")
-                        .WithMany()
-                        .HasForeignKey("AddressId");
-
-                    b.Navigation("Address");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
@@ -792,6 +825,8 @@ namespace LibraryManager.Infrastructure.Migrations
 
             modelBuilder.Entity("LibraryManager.Domain.Models.Library", b =>
                 {
+                    b.Navigation("Address");
+
                     b.Navigation("BookItems");
                 });
 
@@ -812,6 +847,8 @@ namespace LibraryManager.Infrastructure.Migrations
 
             modelBuilder.Entity("LibraryManager.Domain.Models.User", b =>
                 {
+                    b.Navigation("Address");
+
                     b.Navigation("Librarian");
 
                     b.Navigation("Member");

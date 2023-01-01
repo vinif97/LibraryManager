@@ -33,10 +33,7 @@ namespace LibraryManager.Infrastructure.Context
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
-            builder.ApplyConfiguration(new BookConfiguration());
-            builder.ApplyConfiguration(new AddressConfiguration());
-            builder.ApplyConfiguration(new AuthorConfiguration());
-            builder.ApplyConfiguration(new BookItemConfiguration());
+            builder.ApplyConfigurationsFromAssembly(typeof(LibraryContext).Assembly);
         }
     }
 }

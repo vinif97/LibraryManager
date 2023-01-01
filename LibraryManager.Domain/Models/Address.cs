@@ -9,5 +9,9 @@
         public string? Reference { get; set; }
         public virtual City? City { get; set; }
         public string? Zipcode { get; set; }
+        public int UserId { get; set; }
+        public virtual User? User { get; set; }
+        public int LibraryId { get; set; }
+        public virtual Library? Library { get; set; }
     }
 }

@@ -10,7 +10,6 @@ namespace LibraryManager.Infrastructure.Context.Configuration
         public void Configure(EntityTypeBuilder<User> builder)
         {
             builder.HasKey(user => user.Id);
-            builder.Property(user => user.Address);
             builder.Property(user => user.AccountStatus)
                    .IsRequired()
                    .HasDefaultValue(AccountStatus.Active);
@@ -19,7 +18,11 @@ namespace LibraryManager.Infrastructure.Context.Configuration
                    .HasForeignKey<Member>(member => member.UserId);
             builder.HasOne(user => user.Librarian)
                    .WithOne(librarian => librarian.User)
-                   .HasForeignKey<Librarian>(librarian => librarian.User);
+                   .HasForeignKey<Librarian>(librarian => librarian.UserId);
+            builder.HasOne(user => user.Address)
+                   .WithOne(address => address.User)
+                   .HasForeignKey<Address>(address => address.UserId)
+                   .IsRequired();
         }
     }
 }
