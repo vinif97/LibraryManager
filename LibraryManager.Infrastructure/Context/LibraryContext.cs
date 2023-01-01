@@ -16,19 +16,19 @@ namespace LibraryManager.Infrastructure.Context
         public LibraryContext(DbContextOptions<LibraryContext> options) : base(options)
         { }
 
-        DbSet<Address>? Addresses { get; set; }
-        DbSet<Author>? Authors { get; set; }
-        DbSet<Book>? Books { get; set; }
-        DbSet<BookItem>? BookItems { get; set; }
-        DbSet<BookLending>? BookLendings { get; set; }
-        DbSet<BookReservation>? BookReservations { get; set; }
-        DbSet<City>? Cities { get; set; }
-        DbSet<Country>? Countries { get; set; }
-        DbSet<Librarian>? Librarians { get; set; }
-        DbSet<Library>? Libraries { get; set; }
-        DbSet<Member>? Members { get; set; }
-        DbSet<Publisher>? Publishers { get; set; }
-        DbSet<State>? States { get; set; }
+        public DbSet<Address> Addresses => Set<Address>();
+        public DbSet<Author> Authors => Set<Author>();
+        public DbSet<Book> Books => Set<Book>();
+        public DbSet<BookItem> BookItems => Set<BookItem>();
+        public DbSet<BookLending> BookLendings => Set<BookLending>();
+        public DbSet<BookReservation> BookReservations => Set<BookReservation>();
+        public DbSet<City> Cities => Set<City>();
+        public DbSet<Country> Countries => Set<Country>();
+        public DbSet<Librarian> Librarians => Set<Librarian>();
+        public DbSet<Library> Libraries => Set<Library>();
+        public DbSet<Member> Members => Set<Member>();
+        public DbSet<Publisher> Publishers => Set<Publisher>();
+        public DbSet<State> States => Set<State>();
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
