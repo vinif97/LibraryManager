@@ -47,6 +47,12 @@ namespace LibraryManager.Infrastructure.Repositories
             await _context.SaveChangesAsync();
         }
 
+        public async Task UpdateRange(IEnumerable<T> entities)
+        {
+            _context.Set<T>().UpdateRange(entities);
+            await _context.SaveChangesAsync();
+        }
+
         public async Task Delete(T entity)
         {
             _context.Set<T>().Remove(entity);

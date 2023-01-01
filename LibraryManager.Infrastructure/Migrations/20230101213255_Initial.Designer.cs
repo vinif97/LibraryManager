@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LibraryManager.Infrastructure.Migrations
 {
     [DbContext(typeof(LibraryContext))]
-    [Migration("20230101191427_Initial")]
+    [Migration("20230101213255_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -199,7 +199,7 @@ namespace LibraryManager.Infrastructure.Migrations
                         .IsRequired()
                         .ValueGeneratedOnAdd()
                         .HasColumnType("date")
-                        .HasDefaultValue(new DateTime(2023, 1, 1, 16, 14, 27, 705, DateTimeKind.Local).AddTicks(353));
+                        .HasDefaultValue(new DateTime(2023, 1, 1, 18, 32, 55, 54, DateTimeKind.Local).AddTicks(9716));
 
                     b.Property<DateTime?>("DueDate")
                         .IsRequired()
@@ -241,7 +241,7 @@ namespace LibraryManager.Infrastructure.Migrations
                         .IsRequired()
                         .ValueGeneratedOnAdd()
                         .HasColumnType("date")
-                        .HasDefaultValue(new DateTime(2023, 1, 1, 16, 14, 27, 705, DateTimeKind.Local).AddTicks(4053));
+                        .HasDefaultValue(new DateTime(2023, 1, 1, 18, 32, 55, 55, DateTimeKind.Local).AddTicks(4001));
 
                     b.Property<DateTime?>("EndDate")
                         .IsRequired()

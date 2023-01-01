@@ -15,7 +15,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{A4204706
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LibraryManager.Domain.Tests", "LibraryManager.Tests\LibraryManager.Domain.Tests.csproj", "{0AF35739-3386-41B3-9C56-853CCB5E6AE2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibraryManager.Application.Tests", "LibraryManager.Application.Tests\LibraryManager.Application.Tests.csproj", "{F99BE959-1E93-46D2-95F7-56D86FF66848}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LibraryManager.Application.Tests", "LibraryManager.Application.Tests\LibraryManager.Application.Tests.csproj", "{F99BE959-1E93-46D2-95F7-56D86FF66848}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibraryManager.Infrastructure.IoC", "LibraryManager.Infrastructure.IoC\LibraryManager.Infrastructure.IoC.csproj", "{7597B19D-0C56-4BA2-BA85-A2EB081F1F7E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -47,6 +49,10 @@ Global
 		{F99BE959-1E93-46D2-95F7-56D86FF66848}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F99BE959-1E93-46D2-95F7-56D86FF66848}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F99BE959-1E93-46D2-95F7-56D86FF66848}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7597B19D-0C56-4BA2-BA85-A2EB081F1F7E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7597B19D-0C56-4BA2-BA85-A2EB081F1F7E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7597B19D-0C56-4BA2-BA85-A2EB081F1F7E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7597B19D-0C56-4BA2-BA85-A2EB081F1F7E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -409,7 +409,7 @@ namespace LibraryManager.Infrastructure.Migrations
                 {
                     BookLendingId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    CreationDate = table.Column<DateTime>(type: "date", nullable: false, defaultValue: new DateTime(2023, 1, 1, 16, 14, 27, 705, DateTimeKind.Local).AddTicks(353)),
+                    CreationDate = table.Column<DateTime>(type: "date", nullable: false, defaultValue: new DateTime(2023, 1, 1, 18, 32, 55, 54, DateTimeKind.Local).AddTicks(9716)),
                     DueDate = table.Column<DateTime>(type: "date", nullable: false),
                     ReturnDate = table.Column<DateTime>(type: "date", nullable: true),
                     MemberId = table.Column<int>(type: "int", nullable: false),
@@ -439,7 +439,7 @@ namespace LibraryManager.Infrastructure.Migrations
                     BookReservationId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     BookReservationStatus = table.Column<byte>(type: "tinyint", nullable: false, defaultValue: (byte)1),
-                    CreationDate = table.Column<DateTime>(type: "date", nullable: false, defaultValue: new DateTime(2023, 1, 1, 16, 14, 27, 705, DateTimeKind.Local).AddTicks(4053)),
+                    CreationDate = table.Column<DateTime>(type: "date", nullable: false, defaultValue: new DateTime(2023, 1, 1, 18, 32, 55, 55, DateTimeKind.Local).AddTicks(4001)),
                     EndDate = table.Column<DateTime>(type: "date", nullable: false),
                     BookItemId = table.Column<int>(type: "int", nullable: false)
                 },
