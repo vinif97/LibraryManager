@@ -20,5 +20,10 @@ namespace LibraryManager.Infrastructure.Repositories
         {
             return await _context.Publishers.FirstOrDefaultAsync(x => x.PublisherName == publisherName);
         }
+
+        public async Task<Publisher> GetPublisherByNameWithBooks(string publisherName)
+        {
+            return await _context.Publishers.Include(publisher => publisher.Books).FirstAsync(x => x.PublisherName == publisherName);
+        }
     }
 }
