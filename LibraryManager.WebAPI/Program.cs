@@ -1,9 +1,4 @@
-using LibraryManager.Domain.Models;
-using LibraryManager.Infrastructure.Context;
 using LibraryManager.Infrastructure.IoC;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
-
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();

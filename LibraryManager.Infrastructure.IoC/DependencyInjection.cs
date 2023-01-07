@@ -1,6 +1,8 @@
 ﻿using LibraryManager.Domain.Interfaces.Repositories;
+using LibraryManager.Domain.Models;
 using LibraryManager.Infrastructure.Context;
 using LibraryManager.Infrastructure.Repositories;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -14,7 +16,9 @@ namespace LibraryManager.Infrastructure.IoC
             services.AddDbContext<LibraryContext>(opt => opt.UseSqlServer(
                 configuration.GetConnectionString("LibraryConnection"),
                 b => b.MigrationsAssembly(typeof(LibraryContext).Assembly.FullName)));
-
+            services.AddIdentity<User, IdentityRole<int>>()
+                    .AddEntityFrameworkStores<LibraryContext>()
+                    .AddDefaultTokenProviders();
             services.AddScoped<IPublisherRepository, PublisherRepository>();
 
             return services;
