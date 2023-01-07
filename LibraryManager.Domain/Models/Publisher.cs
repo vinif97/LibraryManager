@@ -4,6 +4,6 @@
     {
         public int PublisherId { get; set; }
         public string? PublisherName { get; set; }
-        public virtual ICollection<Book>? Books { get; set; }
+        public ICollection<Book>? Books { get; set; }
     }
 }

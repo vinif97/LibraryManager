@@ -7,7 +7,7 @@ namespace LibraryManager.Domain.Models
         public int MemberId { get; set; }
         public int TotalCheckoutBooks { get; set; }
         public int UserId { get; set; }
-        public virtual User? User { get; set; }
+        public User? User { get; set; }
         public virtual ICollection<BookLending>? CheckedOutBooks { get; set; }
     }
 }

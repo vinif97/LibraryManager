@@ -11,6 +11,6 @@ namespace LibraryManager.Domain.Models
         public int StateId { get; set; }
         public string? StateName { get; set; }
         public virtual Country? Country { get; set; }
-        public virtual ICollection<City>? Cities { get; set; }
+        public ICollection<City>? Cities { get; set; }
     }
 }

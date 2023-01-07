@@ -13,6 +13,6 @@ namespace LibraryManager.Domain.Models
         public virtual Book? Book { get; set; }
         public virtual Library? Library { get; set; }
         public virtual BookLending? BookLending { get; set; }
-        public virtual ICollection<BookReservation>? BookReservation { get; set; }
+        public ICollection<BookReservation>? BookReservation { get; set; }
     }
 }

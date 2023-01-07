@@ -5,6 +5,6 @@
         public int LibraryId { get; set; }
         public string? Name { get; set; }
         public virtual Address? Address { get; set; }
-        public virtual ICollection<BookItem>? BookItems { get; set; }
+        public ICollection<BookItem>? BookItems { get; set; }
     }
 }
