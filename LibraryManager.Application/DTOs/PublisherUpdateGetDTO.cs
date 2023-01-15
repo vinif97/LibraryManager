@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LibraryManager.Application.DTOs
 {
-    public class PublisherUpdateDTO
+    public class PublisherUpdateGetDTO
     {
         public int PublisherId { get; set; }
         public string? PublisherName { get; set; }

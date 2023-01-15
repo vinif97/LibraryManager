@@ -17,6 +17,13 @@ namespace LibraryManager.WebAPI.Controllers
             _bookService = bookService;
         }
 
+        [HttpGet]
+        public async Task<IActionResult> GetAllPublishers()
+        {
+            var publishers = await _bookService.GetPublishers();
+            return Ok(publishers);
+        }
+
         [HttpPost]
         public async Task<IActionResult> AddPublisher(PublisherAddDTO publisher)
         {
@@ -28,13 +35,13 @@ namespace LibraryManager.WebAPI.Controllers
             return Ok();
         }
 
-        [HttpPatch]
-        public async Task<IActionResult> UpdatePublisher(PublisherUpdateDTO publisher)
+        [HttpPut]
+        public async Task<IActionResult> UpdatePublisher(PublisherUpdateGetDTO publisher)
         {
             DatabaseOperationResult operationResult = await _bookService.UpdatePublisher(publisher);
 
             if (!operationResult.IsSuccess && operationResult.Errors.Contains("Publisher doesn't exist"))
-                return NotFound();
+                return NotFound(operationResult.Errors);
             if (!operationResult.IsSuccess)
                 return BadRequest(operationResult.Errors);
 

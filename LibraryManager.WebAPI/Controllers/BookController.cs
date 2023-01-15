@@ -16,11 +16,13 @@ namespace LibraryManager.WebAPI.Controllers
             _bookService = bookService;
         }
 
-        [HttpGet("{publisherName}")]
-        public async Task<IActionResult> GetBookByPublisherName([FromRoute]string publisherName)
+        [HttpGet("{publisher-name}")]
+        public async Task<IActionResult> GetBookByPublisherName([FromRoute(Name = "publisher-name")]string publisherName)
         {
-            Publisher publisher = await _bookService.GetBooksByPublisherName(publisherName);
+            Publisher? publisher = await _bookService.GetBooksByPublisherName(publisherName);
 
+            if(publisher is null)
+                return NotFound("Publisher doesn't exist");
             if (publisher.Books is not null && !publisher.Books.Any())
                 return NotFound("No books registered with this publisher");
 

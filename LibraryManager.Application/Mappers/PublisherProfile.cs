@@ -8,7 +8,7 @@ namespace LibraryManager.Application.Mappers
     {
         public PublisherProfile()
         {
-            CreateMap<Publisher, PublisherUpdateDTO>().ReverseMap();
+            CreateMap<Publisher, PublisherUpdateGetDTO>().ReverseMap();
             CreateMap<Publisher, PublisherAddDTO>().ReverseMap();
         }
     }

@@ -22,14 +22,17 @@ namespace LibraryManager.Application.Services
             _mapper = mapper;
         }
 
-        public async Task<Publisher> GetBooksByPublisherName(string publisherName)
+        public async Task<Publisher?> GetBooksByPublisherName(string publisherName)
         {
             return await _publisherRepository.GetPublisherByNameWithBooks(publisherName);
         }
 
-        public async Task<IEnumerable<Publisher>> GetPublishers()
+        public async Task<IEnumerable<PublisherUpdateGetDTO>> GetPublishers()
         {
-            return await _publisherRepository.GetAll();
+            IEnumerable<Publisher> publishers = await _publisherRepository.GetAll();
+            IEnumerable<PublisherUpdateGetDTO> publishersDTO = _mapper.Map<IEnumerable<PublisherUpdateGetDTO>>(publishers);
+
+            return publishersDTO;
         }
 
         public async Task<DatabaseOperationResult> AddPublisher(PublisherAddDTO publisherDTO)
@@ -65,7 +68,7 @@ namespace LibraryManager.Application.Services
             return operationResult;
         }
 
-        public async Task<DatabaseOperationResult> UpdatePublisher(PublisherUpdateDTO publisherDTO)
+        public async Task<DatabaseOperationResult> UpdatePublisher(PublisherUpdateGetDTO publisherDTO)
         {
             Publisher publisher = _mapper.Map<Publisher>(publisherDTO);
 
@@ -88,6 +91,7 @@ namespace LibraryManager.Application.Services
                     return operationResult;
                 }
 
+                operationResult.IsSuccess = false;
                 operationResult.Errors.Add("Publisher doesn't exist");
             }
             catch (DbUpdateException exception)
